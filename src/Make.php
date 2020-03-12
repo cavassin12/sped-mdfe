@@ -2774,7 +2774,7 @@ private $infPag = [];
  * @return DOMElement
  * @throws RuntimeException
  */
-public function tag
+
 
 
     /**
