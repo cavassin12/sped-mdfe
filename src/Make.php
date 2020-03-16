@@ -16,6 +16,7 @@ namespace NFePHP\MDFe;
  * @license   http://www.gnu.org/licenses/lesser.html LGPL v3
  * @link      http://github.com/nfephp-org/sped-mdfe for the canonical source repository
  * @author    Cleiton Perin <cperin20 at gmail dot com>
+ * @author    Vanderlei Cavassin <cavassin.vanderlei at gmail dot com>
  */
 
 use DOMElement;
@@ -117,11 +118,10 @@ class Make
      * @type string|\DOMNode
      */
     private $infContratante = [];
-/**
- * @type string|\DOMNode
- */
-private $infPag = [];
-
+    /**
+     * @type string|\DOMNode
+     */
+    private $infPag = [];
 
     /**
      * @type string|\DOMNode
@@ -314,6 +314,10 @@ private $infPag = [];
                 if ($this->infContratante) {
                     $this->dom->addArrayChild($this->infANTT, $this->infContratante, 'Falta tag "infContratante"');
                 }
+                if ($this->infPag) {
+                    $this->dom->addArrayChild($this->infANTT, $this->infPag, 'Falta tag "infpag"');
+                }
+
                 $this->dom->appChild($this->rodo, $this->infANTT, 'Falta tag "infANTT"');
             }
             if ($this->veicTracao) {
@@ -2718,7 +2722,7 @@ private $infPag = [];
             $std->CNPJ,
             true,
             "Informar o CNPJ da pessoa jurídica responsável pelo sistema "
-            . "utilizado na emissão do documento fiscal eletrônico"
+                . "utilizado na emissão do documento fiscal eletrônico"
         );
         $this->dom->addChild(
             $infRespTec,
@@ -2726,7 +2730,7 @@ private $infPag = [];
             $std->xContato,
             true,
             "Informar o nome da pessoa a ser contatada na empresa desenvolvedora "
-            . "do sistema utilizado na emissão do documento fiscal eletrônico"
+                . "do sistema utilizado na emissão do documento fiscal eletrônico"
         );
         $this->dom->addChild(
             $infRespTec,
@@ -2734,7 +2738,7 @@ private $infPag = [];
             $std->email,
             true,
             "Informar o e-mail da pessoa a ser contatada na empresa "
-            . "desenvolvedora do sistema."
+                . "desenvolvedora do sistema."
         );
         $this->dom->addChild(
             $infRespTec,
@@ -2742,7 +2746,7 @@ private $infPag = [];
             $std->fone,
             true,
             "Informar o telefone da pessoa a ser contatada na empresa "
-            . "desenvolvedora do sistema."
+                . "desenvolvedora do sistema."
         );
         if (!empty($std->CSRT) && !empty($std->idCSRT)) {
             $this->csrt = $std->CSRT;
